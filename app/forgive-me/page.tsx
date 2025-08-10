@@ -84,6 +84,8 @@ export default function ForgiveMe() {
     }
   }
 
+  const personName = process.env.NEXT_PUBLIC_PERSON_NAME || "beautiful"
+
   if (forgiven) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-yellow-50 flex items-center justify-center p-4">
@@ -92,10 +94,10 @@ export default function ForgiveMe() {
             <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-r from-pink-100 to-yellow-100 rounded-full flex items-center justify-center">
               <Heart className="w-8 h-8 text-pink-500 animate-pulse" />
             </div>
-            <CardTitle className="text-2xl font-bold text-pink-800">Thank you! 🙏✨</CardTitle>
+            <CardTitle className="text-2xl font-bold text-pink-800">Thank you, {personName}! 🙏✨</CardTitle>
           </CardHeader>
           <CardContent className="text-center space-y-4">
-            <p className="text-pink-700 text-lg">You've made me so happy! 💕</p>
+            <p className="text-pink-700 text-lg">You've made me so happy, {personName}! 💕</p>
             <p className="text-pink-600">
               Your forgiveness means everything to me. I promise to be better and cherish what we have.
             </p>
@@ -120,7 +122,9 @@ export default function ForgiveMe() {
           <div className="mx-auto mb-4 w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center">
             <Frown className="w-8 h-8 text-pink-600 animate-pulse" />
           </div>
-          <CardTitle className="text-2xl font-bold text-pink-800 leading-relaxed">Can you forgive me?</CardTitle>
+          <CardTitle className="text-2xl font-bold text-pink-800 leading-relaxed">
+            Can you forgive me, {personName}?
+          </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="text-center text-pink-700 mb-6">

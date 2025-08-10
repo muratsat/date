@@ -1,15 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Heart, Loader2 } from "lucide-react"
 import confetti from "canvas-confetti"
 
 export default function DateProposal() {
-  const searchParams = useSearchParams()
-  const name = searchParams.get("name") || "beautiful"
   const [isShaking, setIsShaking] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [emailSent, setEmailSent] = useState(false)
@@ -38,7 +35,6 @@ export default function DateProposal() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name }),
       })
 
       if (!response.ok) {
@@ -74,7 +70,9 @@ export default function DateProposal() {
             <CardTitle className="text-2xl font-bold text-pink-800">Yay! 🎉</CardTitle>
           </CardHeader>
           <CardContent className="text-center space-y-4">
-            <p className="text-pink-700 text-lg">I'm so excited, {name}! 💕</p>
+            <p className="text-pink-700 text-lg">
+              I'm so excited, {process.env.NEXT_PUBLIC_PERSON_NAME || "beautiful"}! 💕
+            </p>
             <p className="text-pink-600">
               I've sent myself a happy email and I'll be in touch soon to plan our amazing date!
             </p>
@@ -95,7 +93,7 @@ export default function DateProposal() {
             <Heart className="w-8 h-8 text-pink-500" />
           </div>
           <CardTitle className="text-2xl font-bold text-pink-800 leading-relaxed">
-            Will you go on a date with me, {name}?
+            Will you go on a date with me, {process.env.NEXT_PUBLIC_PERSON_NAME || "beautiful"}?
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
