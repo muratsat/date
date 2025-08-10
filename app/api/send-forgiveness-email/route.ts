@@ -5,11 +5,25 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request: NextRequest) {
   try {
-    const name = process.env.PERSON_NAME || "Someone special"
+    // Check if required environment variables are set
+    if (!process.env.RESEND_API_KEY) {
+      console.error("RESEND_API_KEY is not set")
+      return NextResponse.json({ error: "Email service not configured" }, { status: 500 })
+    }
+
+    if (!process.env.ADMIN_EMAIL) {
+      console.error("ADMIN_EMAIL is not set")
+      return NextResponse.json({ error: "Admin email not configured" }, { status: 500 })
+    }
+
+    const name = process.env.PERSON_NAME || process.env.NEXT_PUBLIC_PERSON_NAME || "Someone special"
+
+    console.log("Sending forgiveness email to:", process.env.ADMIN_EMAIL)
+    console.log("From name:", name)
 
     const { data, error } = await resend.emails.send({
       from: "Forgiveness Request <onboarding@resend.dev>",
-      to: [process.env.ADMIN_EMAIL || "admin@example.com"],
+      to: [process.env.ADMIN_EMAIL],
       subject: `🙏 ${name} has forgiven you!`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
@@ -46,12 +60,19 @@ export async function POST(request: NextRequest) {
 
     if (error) {
       console.error("Resend error:", error)
-      return NextResponse.json({ error: "Failed to send email" }, { status: 500 })
+      return NextResponse.json({ error: "Failed to send email", details: error }, { status: 500 })
     }
 
+    console.log("Forgiveness email sent successfully:", data)
     return NextResponse.json({ success: true, data })
   } catch (error) {
     console.error("API error:", error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+    return NextResponse.json(
+      {
+        error: "Internal server error",
+        message: error instanceof Error ? error.message : "Unknown error",
+      },
+      { status: 500 },
+    )
   }
 }
