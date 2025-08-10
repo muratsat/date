@@ -18,14 +18,14 @@ export default function ForgiveMe() {
     setTimeout(() => setIsShaking(false), 600)
 
     // Show sonner toast asking to reconsider
-    toast("Please reconsider... 🥺", {
-      description: "I'm really sorry and I promise to do better. Can you find it in your heart to forgive me?",
+    toast("Think it over?", {
+      description: "I understand you're upset. I'd appreciate a chance to make things right.",
       duration: 5000,
       action: {
-        label: "Maybe...",
+        label: "Maybe",
         onClick: () => {
-          toast("Thank you for considering! 💕", {
-            description: "Your forgiveness would mean the world to me.",
+          toast("Thanks for considering", {
+            description: "I appreciate you giving this some thought.",
           })
         },
       },
@@ -94,12 +94,12 @@ export default function ForgiveMe() {
             <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-r from-pink-100 to-yellow-100 rounded-full flex items-center justify-center">
               <Heart className="w-8 h-8 text-pink-500 animate-pulse" />
             </div>
-            <CardTitle className="text-2xl font-bold text-pink-800">Thank you, {personName}! 🙏✨</CardTitle>
+            <CardTitle className="text-2xl font-bold text-pink-800">Thank you, {personName}!</CardTitle>
           </CardHeader>
           <CardContent className="text-center space-y-4">
-            <p className="text-pink-700 text-lg">You've made me so happy, {personName}! 💕</p>
+            <p className="text-pink-700 text-lg">I really appreciate this, {personName}.</p>
             <p className="text-pink-600">
-              Your forgiveness means everything to me. I promise to be better and cherish what we have.
+              Thank you for giving me another chance. I promise to be better and cherish what we have.
             </p>
             <div className="flex justify-center space-x-2 animate-bounce">
               <Heart className="w-4 h-4 text-pink-500" />
@@ -107,7 +107,7 @@ export default function ForgiveMe() {
               <Heart className="w-4 h-4 text-pink-500" />
             </div>
             <p className="text-sm text-pink-500 italic">
-              I've sent myself a reminder to always treat you with the love and respect you deserve 💖
+              I've sent myself a reminder to be more thoughtful in the future.
             </p>
           </CardContent>
         </Card>
@@ -123,13 +123,13 @@ export default function ForgiveMe() {
             <Frown className="w-8 h-8 text-pink-600 animate-pulse" />
           </div>
           <CardTitle className="text-2xl font-bold text-pink-800 leading-relaxed">
-            Can you forgive me, {personName}?
+            Can we talk, {personName}?
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="text-center text-pink-700 mb-6">
-            <p className="text-lg mb-2">I'm truly sorry... 💔</p>
-            <p className="text-sm">I know I messed up, and I want to make things right.</p>
+            <p className="text-lg mb-2">I messed up.</p>
+            <p className="text-sm">I'd like to make things right between us.</p>
           </div>
 
           {error && (
@@ -150,7 +150,7 @@ export default function ForgiveMe() {
               ) : (
                 <>
                   <Heart className="w-4 h-4 mr-2" />
-                  Yes, I forgive you 💕
+                  We're good
                 </>
               )}
             </Button>
@@ -164,12 +164,12 @@ export default function ForgiveMe() {
               disabled={isLoading}
             >
               <Frown className="w-4 h-4 mr-2" />
-              No, not yet 😔
+              Not ready yet
             </Button>
           </div>
 
           <div className="text-center text-sm text-pink-500 mt-4">
-            <p>I promise to do better... 🙏</p>
+            <p>I'll do better next time.</p>
           </div>
         </CardContent>
       </Card>
