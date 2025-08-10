@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
-        <Toaster />
+        <Toaster position="top-center" richColors />
       </body>
     </html>
   )
